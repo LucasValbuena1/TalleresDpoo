@@ -361,7 +361,28 @@ public class SandboxArreglos
      */
     public int[] calcularRangoEnteros( )
     {
-        return null;
+    	int menor = Integer.MAX_VALUE;
+    	int mayor =Integer.MIN_VALUE;
+    	int[] nuevoArreglo = new int[0];
+    	
+    	
+    	if (arregloEnteros.length != 0) {
+    			nuevoArreglo = new int[2];
+    			nuevoArreglo[0]=menor;
+        		nuevoArreglo[1]=mayor;
+    			}
+    	
+    	
+    	for (int i =0; i<arregloEnteros.length; i++) {
+   
+    		if (arregloEnteros[i]<menor) {
+    			menor = arregloEnteros[i];
+    		}
+    		if (arregloEnteros[i]>mayor) {
+    			mayor = arregloEnteros[i];
+    		}	
+    	}
+	return nuevoArreglo;
     }
 
     /**

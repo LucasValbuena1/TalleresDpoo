@@ -42,7 +42,13 @@ public class SandboxListas
      */
     public List<Integer> getCopiaEnteros( )
     {
-        return null;
+    	ArrayList<Integer> nuevaLista = new ArrayList<>(listaEnteros.size());
+    	
+    	for (int i=0; i<listaEnteros.size(); i++) {
+    		nuevaLista.add(listaEnteros.get(i));
+    	}
+    	
+    	return nuevaLista;
     }
 
     /**
@@ -51,7 +57,9 @@ public class SandboxListas
      */
     public List<String> getCopiaCadenas( )
     {
-        return null;
+    	LinkedList<String> nuevaLista = new LinkedList<>(listaCadenas);
+    
+    	return nuevaLista;
     }
 
     /**
@@ -60,16 +68,21 @@ public class SandboxListas
      */
     public int[] getEnterosComoArreglo( )
     {
-        return null;
+    	int[] nuevoArreglo = new int[listaEnteros.size()];
+    	
+    	for (int i=0; i<listaEnteros.size(); i++) {
+    		nuevoArreglo[i]= listaEnteros.get(i);
+    	}
+    	
+    	return nuevoArreglo;
     }
-
     /**
      * Retorna la cantidad de valores en la lista de enteros
      * @return
      */
     public int getCantidadEnteros( )
     {
-        return -1;
+        return listaEnteros.size();
     }
 
     /**
@@ -78,7 +91,7 @@ public class SandboxListas
      */
     public int getCantidadCadenas( )
     {
-        return -1;
+        return listaCadenas.size();
     }
 
     /**
@@ -88,8 +101,20 @@ public class SandboxListas
      */
     public void agregarEntero( int entero )
     {
-
-    }
+    	ArrayList<Integer> nuevaLista = new ArrayList<>(listaEnteros.size()+1);
+    	
+    	for (int i=0; i<listaEnteros.size(); i++) {
+    		if (i!= listaEnteros.size()){
+    		nuevaLista.add(listaEnteros.get(i));
+    		}
+    		else {
+    			nuevaLista.add(entero);
+    		}
+    	}
+    	listaEnteros = nuevaLista;
+    	return ;
+    	}
+    	
 
     /**
      * Agrega un nuevo valor al final de la lista de cadenas. Es decir que este método siempre debería aumentar en 1 la capacidad de la lista.
@@ -98,16 +123,36 @@ public class SandboxListas
      */
     public void agregarCadena( String cadena )
     {
-
-    }
+    	ArrayList<String> nuevaLista = new ArrayList<>();
+    	
+    	for (int i=0; i<listaCadenas.size(); i++) {
+    		if (i!= listaCadenas.size()){
+    		;
+    		}
+    		else {
+    			nuevaLista[i] = cadena;
+    		}
+    	}
+    	listaCadenas = nuevaLista;
+    	return ;
+    	}
 
     /**
      * Elimina todas las apariciones de un determinado valor dentro de la lista de enteros
      * @param valor El valor que se va eliminar
      */
     public void eliminarEntero( int valor )
-    {
-    }
+    {	int contador = 0;
+    	for (int i=0; i<listaEnteros.size(); i++) {
+    		if (listaEnteros.get(i)!=valor) {
+    			contador ++;
+    	}
+    	}
+    	ArrayList<Integer> nuevaLista = new ArrayList<>(contador);
+    	for (int i=0; i<listaEnteros.size(); i++) {
+    	}
+    	}
+    
 
     /**
      * Elimina todas las apariciones de un determinado valor dentro de la lista de cadenas
