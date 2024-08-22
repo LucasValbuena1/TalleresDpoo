@@ -1,6 +1,7 @@
 package uniandes.dpoo.estructuras.logica;
 
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -288,18 +289,8 @@ public class SandboxArreglos
      */
     public void organizarEnteros( )
     {
-    	int[] nuevoArreglo = new int[arregloEnteros.length];
-    	for (int i =0; i<arregloEnteros.length; i++) {
-    		int menor = 0;
-    		if (arregloEnteros[i]>menor) {
-    			menor = arregloEnteros[i];
-    			nuevoArreglo[i]= menor;
-    		}
-    		
-    		
-    	}
-    	arregloEnteros = nuevoArreglo;
-    	return;
+    	//tipo de sorting tim sort implementado desde Java nativamente
+    	Arrays.sort(arregloEnteros);
     }
 
     /**
@@ -307,7 +298,7 @@ public class SandboxArreglos
      */
     public void organizarCadenas( )
     {
-
+    	Arrays.sort(arregloCadenas);
     }
 
     /**
@@ -351,8 +342,20 @@ public class SandboxArreglos
      */
     public int[] buscarEntero( int valor )
     {
-        return null;
+    	int contadorApariciones = contarApariciones(valor);
+    	int [] posiciones = new int [contadorApariciones];
+    	int posicion = 0;
+    	for (int i =0; i<arregloEnteros.length; i++) {
+    		if (arregloEnteros[i]==valor) {
+    			posiciones[posicion] = i;
+    			posicion ++;
+    		}
+    	}
+    	
+    	return posiciones;
     }
+    	
+    
 
     /**
      * Calcula cuál es el rango de los enteros (el valor mínimo y el máximo).
@@ -365,7 +368,15 @@ public class SandboxArreglos
     	int mayor =Integer.MIN_VALUE;
     	int[] nuevoArreglo = new int[0];
     	
-    	
+    	for (int i =0; i<arregloEnteros.length; i++) {
+    		   
+    		if (arregloEnteros[i]<menor) {
+    			menor = arregloEnteros[i];
+    		}
+    		if (arregloEnteros[i]>mayor) {
+    			mayor = arregloEnteros[i];
+    		}
+    		
     	if (arregloEnteros.length != 0) {
     			nuevoArreglo = new int[2];
     			nuevoArreglo[0]=menor;
@@ -373,14 +384,7 @@ public class SandboxArreglos
     			}
     	
     	
-    	for (int i =0; i<arregloEnteros.length; i++) {
-   
-    		if (arregloEnteros[i]<menor) {
-    			menor = arregloEnteros[i];
-    		}
-    		if (arregloEnteros[i]>mayor) {
-    			mayor = arregloEnteros[i];
-    		}	
+    		
     	}
 	return nuevoArreglo;
     }
@@ -397,12 +401,23 @@ public class SandboxArreglos
 
     /**
      * Cuenta cuántos valores dentro del arreglo de enteros están repetidos.
-     * @return La cantidad de enteos diferentes que aparecen más de una vez
+     * @return La cantidad de enteros diferentes que aparecen más de una vez
      */
     public int contarEnterosRepetidos( )
     {
-        return -1;
-    }
+    	int contadorNumerosRepetidos = 0;
+    	for (int i =0; i<arregloEnteros.length; i++) {
+    		int aparicion = contarApariciones(arregloEnteros[i]);
+    		if (aparicion>1) {
+    			contadorNumerosRepetidos ++;
+    		}
+    	}
+
+    		return contadorNumerosRepetidos;	
+    		}
+    
+        
+    
 
     /**
      * Compara el arreglo de enteros con otro arreglo de enteros y verifica si son iguales, es decir que contienen los mismos elementos exactamente en el mismo orden.
@@ -411,7 +426,13 @@ public class SandboxArreglos
      */
     public boolean compararArregloEnteros( int[] otroArreglo )
     {
-        return false;
+
+    	boolean numeroDiferente = false;
+    	if (Arrays.equals(arregloEnteros, otroArreglo)) {
+    		numeroDiferente = true;
+    	}
+
+        return numeroDiferente;
     }
 
     /**
@@ -421,7 +442,17 @@ public class SandboxArreglos
      */
     public boolean mismosEnteros( int[] otroArreglo )
     {
-        return false;
+    	organizarEnteros();
+    	Arrays.sort(otroArreglo);
+    	
+    	boolean numeroDiferente = false;
+    	if (Arrays.equals(arregloEnteros, otroArreglo)) {
+    		numeroDiferente = true;
+    	}
+    	
+    	
+    	
+        return numeroDiferente;
     }
 
     /**
@@ -437,6 +468,16 @@ public class SandboxArreglos
     public void generarEnteros( int cantidad, int minimo, int maximo )
     {
 
+    	int[] nuevoArreglo = new int[cantidad];
+    	int rango = minimo-maximo+1;
+    	
+    	
+    	for (int i =0; i<nuevoArreglo.length; i++) {
+    		int aleatorios = (int)(Math.random()*rango)+minimo;
+    		nuevoArreglo[i]= aleatorios;
+    	}
+    	arregloEnteros = nuevoArreglo;
+    	return ;
     }
-
+    	
 }

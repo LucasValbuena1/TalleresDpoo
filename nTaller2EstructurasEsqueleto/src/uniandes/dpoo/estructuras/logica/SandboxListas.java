@@ -1,6 +1,7 @@
 package uniandes.dpoo.estructuras.logica;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -123,19 +124,11 @@ public class SandboxListas
      */
     public void agregarCadena( String cadena )
     {
-    	ArrayList<String> nuevaLista = new ArrayList<>();
-    	
-    	for (int i=0; i<listaCadenas.size(); i++) {
-    		if (i!= listaCadenas.size()){
-    		;
-    		}
-    		else {
-    			nuevaLista[i] = cadena;
-    		}
-    	}
+    	ArrayList<String> nuevaLista = new ArrayList<>(listaCadenas);
+    	nuevaLista.add(cadena);
     	listaCadenas = nuevaLista;
     	return ;
-    	}
+    }
 
     /**
      * Elimina todas las apariciones de un determinado valor dentro de la lista de enteros
@@ -220,7 +213,7 @@ public class SandboxListas
      */
     public void organizarEnteros( )
     {
-
+    
     }
 
     /**
@@ -228,7 +221,7 @@ public class SandboxListas
      */
     public void organizarCadenas( )
     {
-
+    
     }
 
     /**
