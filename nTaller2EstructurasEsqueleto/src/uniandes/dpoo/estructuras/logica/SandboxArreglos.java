@@ -140,7 +140,7 @@ public class SandboxArreglos
     	int[] nuevoArreglo = new int[contador];
     	
     	int j=0;
-    	for (int i =0; i<contador;i++) {
+    	for (int i =0; i<arregloEnteros.length;i++) {
     		if (arregloEnteros[i]!=valor) {
     		nuevoArreglo[j]= arregloEnteros[i];
     		j++;}}
@@ -212,7 +212,7 @@ public class SandboxArreglos
      */
     public void eliminarEnteroPorPosicion( int posicion )
     {
-    	if (posicion< arregloEnteros.length && posicion< 0) {
+    	if (posicion >= 0 && posicion < arregloEnteros.length) {
 	    	int j = 0;
 	    	int[] nuevoArreglo = new int[arregloEnteros.length-1];
 	    	for (int i =0; i<arregloEnteros.length; i++) {
@@ -396,25 +396,47 @@ public class SandboxArreglos
      */
     public HashMap<Integer, Integer> calcularHistograma( )
     {
-        return null;
+    	HashMap<Integer, Integer> histograma = new HashMap<>();
+    	for (int valor : arregloEnteros) {
+            if (!histograma.containsKey(valor)) {
+                histograma.put(valor, contarApariciones(valor));
+            }
+        }
+
+        return histograma;
     }
 
     /**
      * Cuenta cuántos valores dentro del arreglo de enteros están repetidos.
      * @return La cantidad de enteros diferentes que aparecen más de una vez
      */
-    public int contarEnterosRepetidos( )
-    {
-    	int contadorNumerosRepetidos = 0;
-    	for (int i =0; i<arregloEnteros.length; i++) {
-    		int aparicion = contarApariciones(arregloEnteros[i]);
-    		if (aparicion>1) {
-    			contadorNumerosRepetidos ++;
-    		}
-    	}
+    public int contarEnterosRepetidos() {
+        
+        if (arregloEnteros.length == 0) {
+            return 0;
+        }
 
-    		return contadorNumerosRepetidos;	
-    		}
+        int menor = calcularRangoEnteros()[0];
+        int mayor = calcularRangoEnteros()[1];
+
+        boolean[] yaContados = new boolean[mayor - menor + 1];
+        int contadorNumerosRepetidos = 0;
+
+        for (int i = 0; i < arregloEnteros.length; i++) {
+            int valor = arregloEnteros[i];
+            int indice = valor - menor; 
+            if (!yaContados[indice]) {  
+                int aparicion = contarApariciones(valor); 
+                if (aparicion > 1) {
+                    contadorNumerosRepetidos++;
+                }
+                yaContados[indice] = true;  
+            }
+        }
+
+        return contadorNumerosRepetidos;
+    }
+
     
         
     
@@ -469,7 +491,8 @@ public class SandboxArreglos
     {
 
     	int[] nuevoArreglo = new int[cantidad];
-    	int rango = minimo-maximo+1;
+    	int rango = maximo - minimo + 1;
+
     	
     	
     	for (int i =0; i<nuevoArreglo.length; i++) {
