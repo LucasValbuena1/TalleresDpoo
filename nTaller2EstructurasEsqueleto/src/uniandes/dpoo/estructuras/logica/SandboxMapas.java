@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Esta clase tiene un conjunto de métodos para practicar operaciones sobre mapas.
@@ -114,8 +116,8 @@ public class SandboxMapas
      */
     public int getCantidadCadenasDiferentes( )
     {
-    	List<String> valores = new ArrayList<>(mapaCadenas.values());
-        return valores.size();
+    	Set<String> valoresUnicos = new HashSet<>(mapaCadenas.values());
+        return valoresUnicos.size();
     }
 
     /**
@@ -129,9 +131,8 @@ public class SandboxMapas
     {
 
     	if (!mapaCadenas.containsKey(cadena)) {
-    		Map<String, String> nuevoMapa = new HashMap<>(mapaCadenas.size());
     		String cadenaInvertida = new StringBuilder(cadena).reverse().toString();
-    		nuevoMapa.put(cadenaInvertida, cadena);
+            mapaCadenas.put(cadenaInvertida, cadena);
     	}
 
     }
@@ -162,7 +163,8 @@ public class SandboxMapas
     	    }
     	}
     	
-		mapaCadenas.remove(llave );
+    	if (llave != null) {
+            mapaCadenas.remove(llave);}
     }
 
     /**
