@@ -58,8 +58,12 @@ public class Vuelo {
 		 if (tiquetes.size() + cantidad > avion.getCapacidadAvion()) {
 	            throw new VueloSobrevendidoException(this);
 	        }else {
-	        	int tarifa = CalculadoraTarifas();
-	        	Tiquete tiquete = new Tiquete(fecha, this, cliente, cantidad); 
+	        	
+	        	
+	        	int tarifa = calculadora.calcularTarifa(this, cliente)*cantidad;
+	        	Tiquete tiquete = new Tiquete(null, this, cliente, tarifa);
+	        	String codigoTiquete = tiquete.getCodigo();
+	        	tiquetes.put(codigoTiquete, tiquete);
 	        	return 0;
 	        }
 	

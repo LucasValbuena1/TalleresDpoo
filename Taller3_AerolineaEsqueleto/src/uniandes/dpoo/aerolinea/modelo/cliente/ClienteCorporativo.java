@@ -24,7 +24,23 @@ public class ClienteCorporativo extends Cliente
 		return CORPORATIVO;
 	}
 
-    public ClienteCorporativo(String nombreEmpresa, int tamanoEmpresa) {
+    public String getNombreEmpresa() {
+		return nombreEmpresa;
+	}
+
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
+	}
+
+	public int getTamanoEmpresa() {
+		return tamanoEmpresa;
+	}
+
+	public void setTamanoEmpresa(int tamanoEmpresa) {
+		this.tamanoEmpresa = tamanoEmpresa;
+	}
+
+	public ClienteCorporativo(String nombreEmpresa, int tamanoEmpresa) {
 		super();
 		this.nombreEmpresa = nombreEmpresa;
 		this.tamanoEmpresa = tamanoEmpresa;

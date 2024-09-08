@@ -8,14 +8,17 @@ public class Ruta
 	private String horaSalida;
 	private String horaLlegada;
 	private String codigoRuta;
+	private Aeropuerto origen;
+	private Aeropuerto destino;
 
 
-    public Ruta(String horaSalida, String horaLlegada, String codigoRuta) {
-		super();
-		this.horaSalida = horaSalida;
-		this.horaLlegada = horaLlegada;
-		this.codigoRuta = codigoRuta;
-	}
+	  public Ruta(String horaSalida, String horaLlegada, String codigoRuta, Aeropuerto origen, Aeropuerto destino) {
+	        this.horaSalida = horaSalida;
+	        this.horaLlegada = horaLlegada;
+	        this.codigoRuta = codigoRuta;
+	        this.setOrigen(origen);   
+	        this.setDestino(destino); 
+	    }
 
 	public String getHoraSalida() {
 		return horaSalida;
@@ -67,15 +70,7 @@ public class Ruta
         return horas;
     }
     
-    public Aeropuerto getOrigen() {
-		return null ;
-    	
-    }
-    
-    public Aeropuerto getDestino() {
-		return null;
-    	
-    }
+
     
     public int getDuracion() {
     	int SalidaMinutos = getHoras(horaSalida) * 60 + getMinutos(horaSalida);
@@ -83,6 +78,22 @@ public class Ruta
         return LlegadaMinutos - SalidaMinutos;
     	
     }
+
+	public Aeropuerto getOrigen() {
+		return origen;
+	}
+
+	public void setOrigen(Aeropuerto origen) {
+		this.origen = origen;
+	}
+
+	public Aeropuerto getDestino() {
+		return destino;
+	}
+
+	public void setDestino(Aeropuerto destino) {
+		this.destino = destino;
+	}
     
 
 	

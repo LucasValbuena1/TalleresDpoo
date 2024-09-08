@@ -26,8 +26,15 @@ public class CentralPersistencia
      */
     public static IPersistenciaAerolinea getPersistenciaAerolinea( String tipoArchivo ) throws TipoInvalidoException
     {
-        // TODO implementar
+    	if (JSON.equals(tipoArchivo)) {
+            return new PersistenciaAerolineaJson();
+        } else if (PLAIN.equals(tipoArchivo)) {
+            return new PersistenciaAerolineaPlaintext();
+        } else {
+            throw new TipoInvalidoException("NO ES ARCHIVO PLANO Y NO ES JSON");
+        }
     }
+
 
     /**
      * Este método retorna una nueva instancia de una clase capaz de cargar y salvar los datos de los tiquetes de una aerolínea
@@ -46,3 +53,5 @@ public class CentralPersistencia
             throw new TipoInvalidoException( tipoArchivo );
     }
 }
+
+
