@@ -1,5 +1,4 @@
 package uniandes.dpoo.aerolinea.tiquetes;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -47,7 +46,7 @@ public class GeneradorTiquetes
      */
     public static void registrarTiquete( Tiquete unTiquete )
     {
-        // TODO implementar
+    	codigos.add(unTiquete.getCodigo());
     }
 
     /**
@@ -57,7 +56,6 @@ public class GeneradorTiquetes
      */
     public static boolean validarTiquete( String codigoTiquete )
     {
-        // TODO implementar
-        return false;
+    	return codigos.contains(codigoTiquete);
     }
 }

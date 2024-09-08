@@ -12,8 +12,78 @@ import uniandes.dpoo.aerolinea.exceptions.AeropuertoDuplicadoException;
  */
 public class Aeropuerto
 {
-    // TODO completar
-    
+   
+	private String nombre;
+    private String codigo;
+    private String nombreCiudad;
+    private double latitud;
+	private double longitud;
+
+	public Aeropuerto(String nombre, String codigo, String nombreCiudad, double latitud, double longitud) throws AeropuertoDuplicadoException {
+		if (codigosUtilizados.contains(codigo)) {
+			throw new AeropuertoDuplicadoException("codigo en uso");
+		
+	}else{
+		this.nombre = nombre;
+		this.codigo = codigo;
+		this.nombreCiudad = nombreCiudad;
+		this.latitud = latitud;
+		this.longitud = longitud;
+	}
+	}
+	
+	
+	
+    public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNombreCiudad() {
+		return nombreCiudad;
+	}
+
+	public void setNombreCiudad(String nombreCiudad) {
+		this.nombreCiudad = nombreCiudad;
+	}
+
+	public double getLatitud() {
+		return latitud;
+	}
+
+	public void setLatitud(double latitud) {
+		this.latitud = latitud;
+	}
+
+	public double getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(double longitud) {
+		this.longitud = longitud;
+	}
+
+	public static Set<String> getCodigosutilizados() {
+		return codigosUtilizados;
+	}
+
+	public static int getRadioTerrestre() {
+		return RADIO_TERRESTRE;
+	}
+
+	private static final Set<String> codigosUtilizados = new HashSet<>();
+    private static final int RADIO_TERRESTRE = 6371;
 
     /**
      * Este método calcula la distancia *aproximada* entre dos aeropuertos. Hay fórmulas más precisas pero esta es suficientemente buena para el caso de la aerolínea.
@@ -45,5 +115,6 @@ public class Aeropuerto
 
         return ( int )Math.round( distancia );
     }
+
 
 }
