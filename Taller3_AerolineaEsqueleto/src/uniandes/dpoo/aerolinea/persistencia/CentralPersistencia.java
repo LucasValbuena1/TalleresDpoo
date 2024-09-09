@@ -50,7 +50,7 @@ public class CentralPersistencia
         if( JSON.equals( tipoArchivo ) )
             return new PersistenciaTiquetesJson( );
         else
-            throw new TipoInvalidoException( tipoArchivo );
+            throw new TipoInvalidoException("NO ES ARCHIVO PLANO Y NO ES JSON");
     }
 }
 
