@@ -27,7 +27,7 @@ public class CalculadoraTarifasTemporadaAlta extends CalculadoraTarifas{
 	}
 	@Override
 	protected double calcularPorcentajeDescuento(Cliente cliente) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

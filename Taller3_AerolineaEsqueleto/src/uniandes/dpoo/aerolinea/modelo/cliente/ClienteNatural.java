@@ -1,10 +1,13 @@
 package uniandes.dpoo.aerolinea.modelo.cliente;
 
-import uniandes.dpoo.aerolinea.modelo.Aerolinea;
+import java.util.List;
+
+import uniandes.dpoo.aerolinea.tiquetes.Tiquete;
 
 public class ClienteNatural extends Cliente {
 	public static final String NATURAL = "Natural";
 	private String nombre;
+	private List<Tiquete>aux;
 	
 	
 
@@ -21,10 +24,13 @@ public class ClienteNatural extends Cliente {
 		this.nombre = nombre;
 	}
 
-	@Override
+    public void auxiliar(Tiquete tiquete) {
+    	this.aux.add(tiquete);
+    }
+    
+    @Override
 	public String getIdentificador() {
-		Cliente cliente = Aerolinea.getCliente();
-		return cliente;
+		return aux.get(aux.size()-1).getCodigo();
 	}
 
 	@Override

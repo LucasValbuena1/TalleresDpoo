@@ -1,6 +1,10 @@
 package uniandes.dpoo.aerolinea.modelo.cliente;
 
+import java.util.List;
+
 import org.json.JSONObject;
+
+import uniandes.dpoo.aerolinea.tiquetes.Tiquete;
 
 /**
  * Esta clase se usa para representar a los clientes de la aerolínea que son empresas
@@ -11,12 +15,17 @@ public class ClienteCorporativo extends Cliente
     public static final int GRANDE = 1;
     public static final int MEDIANA = 2;
     public static final int PEQUENA = 3;
+	private List<Tiquete>aux;
     private String nombreEmpresa;
     private int tamanoEmpresa;
     
+    public void auxiliar(Tiquete tiquete) {
+    	this.aux.add(tiquete);
+    }
+    
     @Override
 	public String getIdentificador() {
-		return null;
+		return aux.get(aux.size()-1).getCodigo();
 	}
 
 	@Override
