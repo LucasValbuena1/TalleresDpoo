@@ -18,10 +18,12 @@ public class Aeropuerto
     private String nombreCiudad;
     private double latitud;
 	private double longitud;
+	private static Set<String> codigosUtilizados = new HashSet<>();
+    private static final int RADIO_TERRESTRE = 6371;
 
 	public Aeropuerto(String nombre, String codigo, String nombreCiudad, double latitud, double longitud) throws AeropuertoDuplicadoException {
 		if (codigosUtilizados.contains(codigo)) {
-			throw new AeropuertoDuplicadoException("codigo en uso");
+			throw new AeropuertoDuplicadoException("aeropuerto duplicado");
 		
 	}else{
 		this.nombre = nombre;
@@ -82,8 +84,7 @@ public class Aeropuerto
 		return RADIO_TERRESTRE;
 	}
 
-	private static final Set<String> codigosUtilizados = new HashSet<>();
-    private static final int RADIO_TERRESTRE = 6371;
+	
 
     /**
      * Este método calcula la distancia *aproximada* entre dos aeropuertos. Hay fórmulas más precisas pero esta es suficientemente buena para el caso de la aerolínea.

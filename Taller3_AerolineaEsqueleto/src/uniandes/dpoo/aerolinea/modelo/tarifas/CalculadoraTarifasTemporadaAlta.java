@@ -10,9 +10,8 @@ public class CalculadoraTarifasTemporadaAlta extends CalculadoraTarifas{
 	
 	protected final int COSTO_POR_KM = 1000;
 	
-	public CalculadoraTarifasTemporadaAlta(double iMPUESTO) {
-		super(iMPUESTO);
-		// TODO Auto-generated constructor stub
+	public CalculadoraTarifasTemporadaAlta() {
+		
 	}
 	
 	

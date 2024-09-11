@@ -43,6 +43,25 @@ public class Ruta
 	public void setCodigoRuta(String codigoRuta) {
 		this.codigoRuta = codigoRuta;
 	}
+	
+	public Aeropuerto getOrigen() {
+		return origen;
+	}
+
+	public void setOrigen(Aeropuerto origen) {
+		this.origen = origen;
+	}
+
+	public Aeropuerto getDestino() {
+		return destino;
+	}
+
+	public void setDestino(Aeropuerto destino) {
+		this.destino = destino;
+	}
+    
+
+	
 
 	/**
      * Dada una cadena con una hora y minutos, retorna los minutos.
@@ -79,24 +98,7 @@ public class Ruta
     	
     }
 
-	public Aeropuerto getOrigen() {
-		return origen;
-	}
 
-	public void setOrigen(Aeropuerto origen) {
-		this.origen = origen;
-	}
-
-	public Aeropuerto getDestino() {
-		return destino;
-	}
-
-	public void setDestino(Aeropuerto destino) {
-		this.destino = destino;
-	}
-    
-
-	
 
     
 }

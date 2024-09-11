@@ -6,10 +6,10 @@ import uniandes.dpoo.aerolinea.modelo.Vuelo;
 import uniandes.dpoo.aerolinea.modelo.cliente.Cliente;
 
 public abstract class CalculadoraTarifas {
-	public double IMPUESTO = 0.28;
+	public static double IMPUESTO = 0.28;
 
-	public CalculadoraTarifas(double iMPUESTO) {
-		IMPUESTO = iMPUESTO;
+	public CalculadoraTarifas() {
+		
 	}
 
 	public double getIMPUESTO() {

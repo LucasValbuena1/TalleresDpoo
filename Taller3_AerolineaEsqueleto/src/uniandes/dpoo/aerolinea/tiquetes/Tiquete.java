@@ -8,15 +8,15 @@ public class Tiquete {
 	private int tarifa;
 	private boolean usado;
 	private Vuelo vuelo;
-    private Cliente clienteComprador;
+    private Cliente cliente;
 
 
-	public Tiquete(String codigo,Vuelo vuelo,Cliente clienteComprador, int tarifa  ) {
+	public Tiquete(String codigo,Vuelo vuelo,Cliente cliente, int tarifa  ) {
 
 		this.codigo = codigo;
 		this.tarifa = tarifa;
 		this.vuelo = vuelo;
-		this.clienteComprador = clienteComprador;
+		this.cliente = cliente;
 	}
 
 	public String getCodigo() {
@@ -58,11 +58,11 @@ public class Tiquete {
 	
 
 	public Cliente getCliente() {
-		return clienteComprador;
+		return cliente;
 	}
 
-	public void setCliente(Cliente clienteComprador) {
-		this.clienteComprador = clienteComprador;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Vuelo getVuelo() {

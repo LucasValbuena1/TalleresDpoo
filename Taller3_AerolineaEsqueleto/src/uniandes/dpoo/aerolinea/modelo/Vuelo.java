@@ -16,10 +16,13 @@ public class Vuelo {
 	private Avion avion;
 	private Map<String, Tiquete> tiquetes = new HashMap<>();
 
-	public Vuelo(Ruta ruta, String fecha, Avion avion) {
-		this.setRuta(ruta);
+	
+
+	public Vuelo(String fecha, Ruta ruta, Avion avion, Map<String, Tiquete> tiquetes) {
 		this.fecha = fecha;
-		this.setAvion(avion);
+		this.ruta = ruta;
+		this.avion = avion;
+		this.tiquetes = tiquetes;
 	}
 
 	public String getFecha() {
@@ -59,12 +62,13 @@ public class Vuelo {
 	            throw new VueloSobrevendidoException(this);
 	        }else {
 	        	
-	        	
-	        	int tarifa = calculadora.calcularTarifa(this, cliente)*cantidad;
-	        	Tiquete tiquete = new Tiquete(null, this, cliente, tarifa);
-	        	String codigoTiquete = tiquete.getCodigo();
-	        	tiquetes.put(codigoTiquete, tiquete);
-	        	return 0;
+	        	int tarifa = calculadora.calcularTarifa(this, cliente) * cantidad;
+	        	for (int i = 0; i < cantidad; i++) {
+	                Tiquete tiquete = new Tiquete(null, this, cliente, tarifa / cantidad);  
+	                String codigoTiquete = tiquete.getCodigo();  
+	                tiquetes.put(codigoTiquete, tiquete);
+	            }
+	            return tarifa;
 	        }
 	
 	

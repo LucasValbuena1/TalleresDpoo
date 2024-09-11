@@ -9,15 +9,15 @@ public class Avion {
 	
 	//Constructor
 	public Avion(int nombre, int capacidadAvion) {
-		this.setNombre(nombre);
-		this.setCapacidadAvion(capacidadAvion);
+		super();
+		this.nombre = nombre;
+		this.capacidadAvion = capacidadAvion;
 	}
 
 
 	public int getNombre() {
 		return nombre;
 	}
-
 
 	public void setNombre(int nombre) {
 		this.nombre = nombre;

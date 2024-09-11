@@ -161,11 +161,15 @@ public class Aerolinea
      * @param fechaVuelo
      * @return Retorna el vuelo que coincide con los parámetros dados. Si no lo encuentra, retorna null.
      */
-    public Vuelo getVuelo( String codigoRuta, String fechaVuelo )
-    {
-        // TODO implementar
-        return null;
-    }
+    public Vuelo getVuelo( String codigoRuta, String fechaVuelo ) {
+    	Vuelo retorno = null;
+	    for (Vuelo vuelo : vuelos) {
+	        if (vuelo.getFecha().equals(fechaVuelo) && vuelo.getRuta().getCodigoRuta().equals(codigoRuta)) {
+	            retorno = vuelo;
+	        }
+	    }
+		return retorno;
+	    }
 
     /**
      * Retorna todos los clientes de la aerolínea
@@ -180,13 +184,12 @@ public class Aerolinea
      * Retorna todos los tiquetes de la aerolínea, los cuales se recolectan vuelo por vuelo
      * @return
      */
-    public Collection<Tiquete> getTiquetes( )
-    {
-        // TODO implementar
-        return null;
-
-    }
-
+    public Collection<Tiquete> getTiquetes( ){
+	    List<Tiquete> tiquetesAerolinea = new ArrayList<>();
+	    for (Vuelo vuelo : vuelos) {
+	    	tiquetesAerolinea.addAll(vuelo.getTiquetes());
+	    }
+	    return tiquetesAerolinea;}
     // ************************************************************************************
     //
     // Estos son los métodos que están relacionados con la persistencia de la aerolínea
@@ -203,8 +206,9 @@ public class Aerolinea
      */
     public void cargarAerolinea( String archivo, String tipoArchivo ) throws TipoInvalidoException, IOException, InformacionInconsistenteException
     {
-        // TODO implementar
-    }
+    	 IPersistenciaAerolinea aerolineaCarga = CentralPersistencia.getPersistenciaAerolinea(tipoArchivo);
+    	    aerolineaCarga.cargarAerolinea(archivo, this);
+    	}
 
     /**
      * Salva la información de la aerlínea en un archivo
@@ -215,7 +219,8 @@ public class Aerolinea
      */
     public void salvarAerolinea( String archivo, String tipoArchivo ) throws TipoInvalidoException, IOException
     {
-        // TODO implementar
+    	IPersistenciaAerolinea AerolineaGuardar = CentralPersistencia.getPersistenciaAerolinea(tipoArchivo);
+    	AerolineaGuardar.salvarAerolinea(archivo, this);
     }
 
     /**
@@ -296,7 +301,8 @@ public class Aerolinea
      */
     public void registrarVueloRealizado( String fecha, String codigoRuta )
     {
-        // TODO Implementar el método
+    	Vuelo vuelo = getVuelo(codigoRuta, fecha);
+    	
     }
 
     /**

@@ -14,8 +14,8 @@ public class CalculadoraTarifasTemporadaBaja extends CalculadoraTarifas {
     protected final double DESCUENTO_PEQ = 0.02;
 	
 	
-	public CalculadoraTarifasTemporadaBaja(double iMPUESTO) {
-		super(iMPUESTO);
+	public CalculadoraTarifasTemporadaBaja() {
+		
 	}
 
 	@Override
