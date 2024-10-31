@@ -36,5 +36,16 @@ public class ProductoMenuTest {
 	    {
 	        assertEquals( 13000, Menu1.getPrecio( ), "El precio del menu no es el esperado." );
 	    }
+	    
+	    @Test
+	    void testGenerarTextoFactura() {
+	        String resultado = Menu1.generarTextoFactura();
+
+	        StringBuffer sb = new StringBuffer();
+	        sb.append(Menu1.getNombre()).append("\n");
+	        sb.append("            ").append(Menu1.getPrecio()).append("\n");
+
+	        assertEquals(sb.toString(), resultado, "El texto de la factura del producto no es el esperado.");
+	    }
 
 }

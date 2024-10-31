@@ -17,7 +17,10 @@ import org.junit.jupiter.api.Test;
 import uniandes.dpoo.hamburguesas.excepciones.HamburguesaException;
 import uniandes.dpoo.hamburguesas.excepciones.NoHayPedidoEnCursoException;
 import uniandes.dpoo.hamburguesas.excepciones.YaHayUnPedidoEnCursoException;
+import uniandes.dpoo.hamburguesas.mundo.Combo;
+import uniandes.dpoo.hamburguesas.mundo.Ingrediente;
 import uniandes.dpoo.hamburguesas.mundo.Pedido;
+import uniandes.dpoo.hamburguesas.mundo.ProductoMenu;
 import uniandes.dpoo.hamburguesas.mundo.Restaurante;
 
 public class RestauranteTest {
@@ -77,18 +80,38 @@ public class RestauranteTest {
 
     @Test
     void testGetMenuBase() {
-        assertTrue(restaurante.getMenuBase().isEmpty());
+        assertTrue(restaurante.getMenuBase().isEmpty(), "La lista debería estar inicialmente vacía.");    
+        ProductoMenu nuevoProducto = new ProductoMenu("corral queso", 16000);
+        restaurante.getMenuBase().add(nuevoProducto);
+        assertTrue(restaurante.getMenuBase().contains(nuevoProducto), "El menú base debería contener una corral de queso");
     }
     
     
     @Test
     void testGetMenuCombos() {
-        assertTrue(restaurante.getMenuCombos().isEmpty());
+        assertTrue(restaurante.getMenuCombos().isEmpty(), "El menú de combos debería estar inicialmente vacío.");
+        
+        ArrayList<ProductoMenu> items = new ArrayList<>();
+        ProductoMenu item1 = new ProductoMenu("papas grandes", 6900);
+        ProductoMenu item2 = new ProductoMenu("gaseosa", 5000);
+        ProductoMenu item3 = new ProductoMenu("todoterreno", 25000);
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
+        
+        Combo combo1 = new Combo("combo todoterreno", 0.7, items);
+        restaurante.getMenuCombos().add(combo1);
+        
+        assertTrue(restaurante.getMenuCombos().contains(combo1), "El menú de combos debería contener el combo agregado.");
     }
+
 
     @Test
     void testGetIngredientes() {
-        assertTrue(restaurante.getIngredientes().isEmpty());
+        assertTrue(restaurante.getIngredientes().isEmpty(), "La lista debería estar inicialmente vacía.");
+        Ingrediente nuevoIngrediente = new Ingrediente("lechuga", 1000);
+        restaurante.getIngredientes().add(nuevoIngrediente);
+        assertTrue(restaurante.getIngredientes().contains(nuevoIngrediente), "La lista de ingredientes debería contener lechuga");
     }
 
     @Test

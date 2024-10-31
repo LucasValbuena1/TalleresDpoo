@@ -48,7 +48,7 @@ public class ProductoAjustadoTest {
     }
 
     @Test
-    void testQuitarIngrediente() {
+    void testEliminarIngrediente() {
     	Ingrediente huevo = new Ingrediente("huevo", 2500);
     	try {
 			productoAjustado1.agregarIngrediente(huevo);
