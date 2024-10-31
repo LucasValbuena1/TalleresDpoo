@@ -73,7 +73,15 @@ public class Pedido
         return nombreCliente;
     }
 
-    /**
+    public ArrayList<Producto> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(ArrayList<Producto> productos) {
+		this.productos = productos;
+	}
+
+	/**
      * Agrega un nuevo producto al pedido
      * @param nuevoProducto El producto que debe agregarse al pedido
      */

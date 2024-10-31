@@ -2,6 +2,8 @@ package uniandes.dpoo.hamburguesas.mundo;
 
 import java.util.ArrayList;
 
+import uniandes.dpoo.hamburguesas.excepciones.IngredienteRepetidoException;
+
 /**
  * Un producto ajustado es un producto para el cual el cliente solicitó alguna modificación.
  */
@@ -17,7 +19,15 @@ public class ProductoAjustado implements Producto
      */
     private ArrayList<Ingrediente> agregados;
 
-    /**
+    public ArrayList<Ingrediente> getEliminados() {
+		return eliminados;
+	}
+
+	public void setEliminados(ArrayList<Ingrediente> eliminados) {
+		this.eliminados = eliminados;
+	}
+
+	/**
      * La lista de ingrediente que el usuario quiere eliminar.
      */
     private ArrayList<Ingrediente> eliminados;
@@ -29,7 +39,7 @@ public class ProductoAjustado implements Producto
     public ProductoAjustado( ProductoMenu productoBase )
     {
         this.productoBase = productoBase;
-        agregados = new ArrayList<Ingrediente>( );
+        setAgregados(new ArrayList<Ingrediente>( ));
         eliminados = new ArrayList<Ingrediente>( );
     }
 
@@ -43,10 +53,30 @@ public class ProductoAjustado implements Producto
      * Retorna el precio del producto ajustado, que debe ser igual al del producto base, sumándole el precio de los ingredientes adicionales.
      */
     @Override
-    public int getPrecio( )
-    {
-        return 0;
+    public int getPrecio( ) {
+	    int precioTotal = productoBase.getPrecio();
+	    for (Ingrediente ingrediente : getAgregados()) {
+	        precioTotal += ingrediente.getCostoAdicional();
+	    }
+	    for (Ingrediente ingrediente : eliminados) {
+	        precioTotal -= ingrediente.getCostoAdicional();
+	    }
+	    return precioTotal;
+	}
+
+    
+    public void agregarIngrediente(Ingrediente ingrediente) throws IngredienteRepetidoException {
+        if (getAgregados().contains(ingrediente)) {
+            throw new IngredienteRepetidoException(ingrediente.getNombre());
+        }
+        getAgregados().add(ingrediente);
     }
+
+
+    public void eliminarIngrediente(Ingrediente ingrediente) {
+        eliminados.add(ingrediente);
+    }
+    
 
     /**
      * Genera el texto que debe aparecer en la factura.
@@ -57,8 +87,8 @@ public class ProductoAjustado implements Producto
     public String generarTextoFactura( )
     {
         StringBuffer sb = new StringBuffer( );
-        sb.append( productoBase );
-        for( Ingrediente ing : agregados )
+        sb.append(productoBase.getNombre());
+        for( Ingrediente ing : getAgregados() )
         {
             sb.append( "    +" + ing.getNombre( ) );
             sb.append( "                " + ing.getCostoAdicional( ) );
@@ -72,5 +102,13 @@ public class ProductoAjustado implements Producto
 
         return sb.toString( );
     }
+
+	public ArrayList<Ingrediente> getAgregados() {
+		return agregados;
+	}
+
+	public void setAgregados(ArrayList<Ingrediente> agregados) {
+		this.agregados = agregados;
+	}
 
 }
