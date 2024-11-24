@@ -1,0 +1,7 @@
+Cliente: Ivan Salazar
+Dirección: Carrera 2 calle 19
+----------------
+----------------
+Precio Neto:  0
+IVA:          0
+Precio Total: 0

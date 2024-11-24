@@ -83,6 +83,8 @@ public class RestauranteTest {
         assertTrue(restaurante.getMenuBase().isEmpty(), "La lista debería estar inicialmente vacía.");    
         ProductoMenu nuevoProducto = new ProductoMenu("corral queso", 16000);
         restaurante.getMenuBase().add(nuevoProducto);
+
+ 
         assertTrue(restaurante.getMenuBase().contains(nuevoProducto), "El menú base debería contener una corral de queso");
     }
     
