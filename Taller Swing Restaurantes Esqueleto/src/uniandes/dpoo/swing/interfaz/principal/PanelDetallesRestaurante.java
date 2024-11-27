@@ -1,5 +1,6 @@
 package uniandes.dpoo.swing.interfaz.principal;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -7,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import uniandes.dpoo.swing.mundo.Restaurante;
 
@@ -30,20 +32,23 @@ public class PanelDetallesRestaurante extends JPanel
 
     public PanelDetallesRestaurante( )
     {
-        // Configura la etiqueta para el nombre
-        // TODO completar el constructor
-
-        // Configura la etiqueta para la calificación
-        // TODO completar el constructor
-
-        // Configura el checkbox para indicar si ya se visitaó o no el restaurante
-        // TODO completar el constructor
-
-        // Organiza los elementos en la venta
-        // TODO completar el constructor
+    	setLayout(new GridLayout(3, 1));
+        
+        labNombre = new JLabel("Nombre: ");
+        add(labNombre);
+        
+        labCalificacion = new JLabel("Calificacion: ");
+        labCalificacion.setIcon(buscarIconoCalificacion(0)); 
+        add(labCalificacion);
+        
+        chkVisitado = new JCheckBox("Visitado: ");
+        chkVisitado.setEnabled(false);
+        add(chkVisitado);
     }
 
-    /**
+    
+
+	/**
      * Actualiza los datos mostrados del restaurante, indicando los valores por separado.
      * @param nombre
      * @param calificacion
@@ -51,9 +56,10 @@ public class PanelDetallesRestaurante extends JPanel
      */
     private void actualizarRestaurante( String nombre, int calificacion, boolean visitado )
     {
-     // TODO completar actualizarRestaurante
+    	labNombre.setText(nombre);
+    	labCalificacion.setIcon(buscarIconoCalificacion(calificacion));
+    	chkVisitado.setSelected(visitado);
     }
-
     /**
      * Actualiza los datos que se muestran de un restaurante
      * @param r El restaurante que se debe mostrar

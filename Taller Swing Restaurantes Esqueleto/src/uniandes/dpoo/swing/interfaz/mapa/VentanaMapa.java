@@ -57,6 +57,26 @@ public class VentanaMapa extends JFrame implements ActionListener
         // TODO completar
 
         // Termina de configurar la ventana y la muestra
+        
+        setLayout(new BorderLayout());
+        panelMapa = new PanelMapaVisualizar();
+        add(panelMapa, BorderLayout.CENTER);
+        JPanel panelSur = new JPanel();
+        radioTodos = new JRadioButton("Todos");
+        radioTodos.setActionCommand(TODOS);
+        radioTodos.addActionListener(this);
+        radioTodos.setSelected(false); 
+
+        radioVisitados = new JRadioButton("Visitados");
+        radioVisitados.setActionCommand(VISITADOS);
+        radioVisitados.addActionListener(this);
+        ButtonGroup grupoRadios = new ButtonGroup();
+        grupoRadios.add(radioTodos);
+        grupoRadios.add(radioVisitados);
+        panelSur.add(radioTodos);
+        panelSur.add(radioVisitados);
+        add(panelSur, BorderLayout.SOUTH);
+       
         pack( );
         setResizable( false );
         setDefaultCloseOperation( DISPOSE_ON_CLOSE );
