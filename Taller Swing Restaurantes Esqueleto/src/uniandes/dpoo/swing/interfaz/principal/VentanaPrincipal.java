@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import uniandes.dpoo.swing.interfaz.agregar.PanelMapaAgregar;
 import uniandes.dpoo.swing.interfaz.agregar.VentanaAgregarRestaurante;
 import uniandes.dpoo.swing.interfaz.mapa.VentanaMapa;
 import uniandes.dpoo.swing.mundo.Diario;
@@ -72,22 +73,33 @@ public class VentanaPrincipal extends JFrame
     /**
      * Abre la ventana para agregar un nuevo restaurante, si no está abierta ya
      */
-    public void mostrarVetanaNuevoRestaurante( )
+    public void mostrarVetanaNuevoRestaurante()
     {
-        if( ventanaAgregar == null || !ventanaAgregar.isVisible( ) )
+        if (ventanaAgregar == null || !ventanaAgregar.isVisible())
         {
-            ventanaAgregar = new VentanaAgregarRestaurante( this );
-            ventanaAgregar.setVisible( true );
+            PanelMapaAgregar panelMapa = new PanelMapaAgregar(); // Inicializa el panel del mapa
+            ventanaAgregar = new VentanaAgregarRestaurante(this, panelMapa); // Pasa panelMapa
+            ventanaAgregar.setVisible(true);
         }
     }
 
     /**
      * Abre la ventana para mostrar el mapa de restaurante, si no está abierta ya
      */
-    public void mostrarVentanaMapa( )
+    public void mostrarVentanaMapa()
     {
-        // TODO completar mostrarVentanaMapa
+        if (ventanaMapa == null || !ventanaMapa.isVisible())
+        {
+            // Obtiene la lista de restaurantes desde el mundo sin argumentos
+            List<Restaurante> restaurantes = mundo.getRestaurantes(true); 
+            
+            // Crea una nueva ventana de mapa
+            ventanaMapa = new VentanaMapa(this, restaurantes);
+            ventanaMapa.setVisible(true);
+        }
     }
+
+
 
     /**
      * Agrega un nuevo restaurante al diario y actualiza la información que se muestra
@@ -97,10 +109,13 @@ public class VentanaPrincipal extends JFrame
      * @param y La coordenada Y del nuevo restaurante
      * @param visitado Indica si el nuevo restaurante ya fue visitado o no
      */
-    public void agregarRestaurante( String nombre, int calificacion, int x, int y, boolean visitado )
+    public void agregarRestaurante(String nombre, int calificacion, int x, int y, boolean visitado)
     {
-        // TODO completar agregarRestaurante
+        Restaurante nuevoRestaurante = new Restaurante(nombre, calificacion, x, y, visitado);
+        mundo.agregarRestaurante(nuevoRestaurante);
+        pLista.actualizarRestaurantes(mundo.getRestaurantes(true));
     }
+
 
     /**
      * Retorna una lista de los restaurantes.

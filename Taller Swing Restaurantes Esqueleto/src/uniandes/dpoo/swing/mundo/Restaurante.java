@@ -47,10 +47,11 @@ public class Restaurante
     }
 
     @Override
-    public String toString( )
+    public String toString()
     {
-     // TODO completar para que retorne el nombre del restaurante
-        return super.toString( );
+        return nombre;
     }
+
+
 
 }

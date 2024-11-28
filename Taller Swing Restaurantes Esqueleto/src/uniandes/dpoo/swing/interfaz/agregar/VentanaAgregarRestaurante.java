@@ -30,12 +30,12 @@ public class VentanaAgregarRestaurante extends JFrame
      */
     private VentanaPrincipal ventanaPrincipal;
 
-    public VentanaAgregarRestaurante( VentanaPrincipal principal )
+    public VentanaAgregarRestaurante( VentanaPrincipal principal, PanelMapaAgregar panelMapa )
     {
         this.ventanaPrincipal = principal;
         setLayout( new BorderLayout( ) );
 
-        panelMapa = new PanelMapaAgregar();
+        this.panelMapa = panelMapa;
         add(panelMapa, BorderLayout.CENTER);
         panelDetalles = new PanelEditarRestaurante();
         panelBotones = new PanelBotonesAgregar(this);
@@ -58,7 +58,10 @@ public class VentanaAgregarRestaurante extends JFrame
         String nombre = panelDetalles.getNombre();
         int calificacion = panelDetalles.getCalificacion();
         boolean visitado = panelDetalles.getVisitado();
-        ventanaPrincipal.agregarRestaurante(nombre, calificacion, 0, 0, visitado); // de donde me saco las coordenadas
+        int[] coordenadas = panelMapa.getCoordenadas();
+        int x = coordenadas[0]; // Coordenada X
+        int y = coordenadas[1];
+        ventanaPrincipal.agregarRestaurante(nombre, calificacion, x, y, visitado);// de donde me saco las coordenadas
         cerrarVentana();
     }
     /**
